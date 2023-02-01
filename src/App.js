@@ -2,7 +2,7 @@
 import './App.css';
 import Header from './components/Header';
 import HomePage from './Pages/HomePage';
-import Search from './Pages/Search';
+import Footer from './components/Footer';
 //import from 'react-dom'
 
 
@@ -14,10 +14,9 @@ function App() {
       </div>
       <div className='body'>
       <HomePage/>
-      <Search/>
       </div>
       <div className='footer'>
-        <footer/>
+      <Footer/>
       </div>
     </div>
   );
