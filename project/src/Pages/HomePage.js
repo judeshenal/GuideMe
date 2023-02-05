@@ -1,9 +1,15 @@
 import React from 'react'
+import homepage from '../Assets/homepage.png'
+import './HomePage.css'
+import Footer from '../components/Footer';
 
 export default function HomePage() {
   return (
-    <div>
-        <h1> This is the Homepage</h1>
+    <div >
+      <img  src={homepage} className="HomePage" />
+      <div className='footer'>
+      <Footer/>
+      </div>
     </div>
   )
 }
