@@ -15,6 +15,12 @@ import HomePage from "./Pages/HomePage";
 import CompanyDetails from "./Pages/company details/companyDetails";
 import Notification from "./Pages/notification/notification";
 import Done from "./Pages/notification/notofication pages/done";
+import Save from "./Pages/notification/notofication pages/save";
+import Inbox from "./Pages/notification/notofication pages/inbox";
+import Assigned from "./Pages/notification/notofication pages/assigned";
+import Participating from "./Pages/notification/notofication pages/participating";
+import Mentioned from "./Pages/notification/notofication pages/mentioned";
+import ReviewRequest from "./Pages/notification/notofication pages/review-request";
 
 function App() {
   return (
@@ -29,6 +35,12 @@ function App() {
       <Route path="/company-details" element={<CompanyDetails />} />
       <Route path="/notification" element={<Notification />} />
       <Route path="/done" element={<Done />} />
+      <Route path="/save" element={<Save />} />
+      <Route path="/inbox" element={<Inbox />} />
+      <Route path="/assigned" element={<Assigned />} />
+      <Route path="/participating" element={<Participating />} />
+      <Route path="/mentioned" element={<Mentioned />} />
+      <Route path="/review-request" element={<ReviewRequest />} />
       </Routes>
     </Router> 
   );
