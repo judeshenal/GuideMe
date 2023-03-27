@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "72b5d3a5-38b3-4a0e-a763-0a8fa864350a",
+		"name": "jobSeeker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13861990"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5000/scrape",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"web_page_url\":\"https://www.flipkart.com/laptops/pr?sid=6bo%2Cb5g&otracker=categorytree&sort=popularity\",\r\n    \"card_class_name\":\"_1AtVbE col-12-12\",\r\n    \"card_html_tag\":\"div\",\r\n    \"attributes\":[{\r\n        \"attributeName\":\"jname\",\r\n        \"className\":\"_4rR01T\",\r\n        \"html_tag\":\"div\"      \r\n    },\r\n    {\r\n        \"attributeName\":\"age\",\r\n        \"className\":\"_4rR01T\",\r\n        \"html_tag\":\"div\"\r\n    }\r\n    ], \r\n    \"jobAttributes\" :{\r\n            \"name\":\"jname\",\r\n            \"age\":\"age\"\r\n        },\r\n    \"categoryId\":1,\r\n    \"primary_attribute\":\"jname\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/scrape",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"scrape"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/getById/640d8aeb18b7a40a7a52293a",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/getById/640d8aeb18b7a40a7a52293a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"getById",
+						"640d8aeb18b7a40a7a52293a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/addNotification",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"message\":\"hello\",\r\n    \"type\":false,\r\n    \"userIds\":[1]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/addNotification",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"addNotification"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/getNotifications/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/getNotifications/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"getNotifications",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/mailSend",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"subath.abeysekara@gmail.com\",\r\n    \"body\":\"hello subhath\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/mailSend",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"mailSend"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

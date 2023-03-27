@@ -1,0 +1,9 @@
+pip install Flask
+pip install beautifulsoup4
+python -m pip install mysql-connector-python
+
+jseeker891@gmail.com - mongoACCEmail
+Jobseeker@123 - MongoACCPw
+
+jseeker891 - MongoUser
+2AjIuC5fX1q2l9il - MongoPW
