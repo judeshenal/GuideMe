@@ -65,6 +65,21 @@ const Navbar = () => {
               Contact Us
             </a>
           </li>
+          <li className="nav-item px-3">
+            <a href="/meet" className="nav-link" style={{color:"black"}}>
+               Meet
+            </a>
+          </li>
+          <li className="nav-item px-3">
+            <a href="/chat" className="nav-link" style={{color:"black"}}>
+               Chat
+            </a>
+          </li>
+          <li className="nav-item px-3">
+            <a href="/transactionHistory" className="nav-link" style={{color:"black"}}>
+               Payment History
+            </a>
+          </li>
 
           {showInput ? (
             <li className="nav-item search px-3 pt-2">

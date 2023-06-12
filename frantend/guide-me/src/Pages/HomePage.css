@@ -216,4 +216,8 @@
     border: 1px solid;
   }
   
+
+  a:link{
+    text-decoration: none;
+  }
   

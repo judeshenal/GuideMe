@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
@@ -16,12 +16,18 @@ import Navbar from "../../components/navbar";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import { BiAlignMiddle } from "react-icons/bi";
-import jobPostImage from '../../Assets/image.jpg'
+import jobPostImage from '../../Assets/image.jpg';
+import "../job post/jobPost.css";
+import logoImg from "../../Assets/logo.jpg";
+import { BsClock, BsBag, BsTag, BsShare } from "react-icons/bs";
+import { MdDoubleArrow } from "react-icons/md";
+// import jobPostImage from '../../Assets/image.jpg'
+import webscraping from '../../apis/webscraping';
 
 
 
 
-const JobVacancies = ({ keyword, onChange }) => {
+const JobVacancies = ({ keyword, onChange,idMongo }) => {
     const [checked, setChecked] = useState(false);
     const [radioValue, setRadioValue] = useState('1');
     const BarStyle = { marginLeft: "550px", marginRight: "200px", alignment: "center", width: "20rem", background: "#F0F0F0", border: "none", padding: "0.5rem" };
@@ -30,6 +36,19 @@ const JobVacancies = ({ keyword, onChange }) => {
         { name: 'Saved', value: '2' },
         { name: 'Alerts', value: '3' },
     ];
+
+    useEffect(()=>{
+        webscraping.get('/getmongo/'+idMongo,{
+        })
+        .then((res) => { 
+          console.log("result : ", res.data)
+      })
+    // Catch errors if any
+    .catch((err) => { 
+      alert(err)
+    })
+    },[])
+
     return (
 
         <div>
@@ -40,15 +59,18 @@ const JobVacancies = ({ keyword, onChange }) => {
                 <Row style={{ background: "#bfbfbf", marginLeft: "0px", marginRight: "0px" }}>
                     <Col>
                         <br />
+                        <div style={{display:'flex', marginLeft:'40%'}}>
+                            <FaSearch size={30}/>
+                            <input
+                                className='search-bar'
+                                key="search-bar"
+                                value={keyword}
+                                placeholder={"Remote Job Vacancies"}
+                                onChange={(e) => onChange(e.target.value)}
 
-                        <input
-                            style={BarStyle}
-                            key="search-bar"
-                            value={keyword}
-                            placeholder={"Remote Job Vacancies"}
-                            onChange={(e) => onChange(e.target.value)}
-
-                        />
+                            />
+                            {/* <FaSearch size={30} style={{marginLeft:'1rem', marginTop:'.5rem'}}/> */}
+                        </div>
 
 
                     </Col>
@@ -200,9 +222,12 @@ const JobVacancies = ({ keyword, onChange }) => {
                     <Button variant="secondary" size="lg" active>
                         Marketing
                     </Button>{' '}
-                    <Button variant="secondary" size="lg" active>
+                    {/* <Button variant="secondary" size="lg" active>
                         Marketing
-                    </Button>{' '}
+                    </Button>{' '} */}
+                        <MdDoubleArrow size={40}/>
+                  
+                   
 
 
 
@@ -211,7 +236,7 @@ const JobVacancies = ({ keyword, onChange }) => {
                 <br />
                 <br />
 
-                <h3>Business Analyst</h3>
+                {/* <h3>Business Analyst</h3>
 
                 <Table striped bordered hover>
                     <thead>
@@ -238,9 +263,31 @@ const JobVacancies = ({ keyword, onChange }) => {
 
                         </tr>
 
-                    </thead></Table>
+                    </thead></Table> */}
 
 
+                    {/* Job role detail content */}
+                    <div className="job-role-detail-content">
+                        <div className="job-role-detail">
+                            <img className="job-role-detail-logo" src={logoImg}/>
+                            <div className="job-role-detail-text">
+                                <h4 style={{paddingLeft:'2rem'}}>Business Analyst</h4>
+                                <ul className='job-role-detail-text-list'>
+                                    <li>Deep Consulting Solutions</li>
+                                    <li>Via2Staff</li>
+                                    <li>US $60 - $85K</li>
+                                    <li className='job-role-detail-text-list-bottom-tab'>
+                                        <div><BsClock/> 2 Days Ago</div>
+                                        <div style={{marginLeft:'1rem'}}> <BsBag/> Full Time</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="job-role-icon-set">
+                           <div><BsTag size={20}/>SAVE</div> 
+                            <BsShare size={20}/>
+                        </div>
+                    </div>
 
 
 

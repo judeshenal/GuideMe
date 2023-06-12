@@ -1,0 +1,25 @@
+.buttons{
+  width: 550px;
+  margin: 2em auto;
+  padding: 1em;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #f0f0f0;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 4px #00000018;
+  
+}
+
+.lines{
+  margin: 20px;
+}
+
+Button{
+  margin-left: 20px;
+}
+
+/*
+@media (max-width: 520px) {
+    {width: 100%;}
+  }*/

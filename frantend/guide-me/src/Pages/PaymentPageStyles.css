@@ -1,0 +1,63 @@
+.payment-page-billing-field{
+    height: 3rem;
+    border-radius: 5px;
+    background-color: rgb(47, 81, 202,0.4);
+}
+
+.payment-page-pay-method{
+    height: 5rem;
+    border-radius: 5px;
+    background-color: #E5E5E5;
+}
+
+.payment-input{
+    border: 2px solid #E5E5E5;
+    height: 2.5rem;
+    border-radius: 5px;
+}
+
+.payment-input-label{
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.make-payment-btn{
+    height: 2.5rem;
+    width: 12rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    background-color: rgb(47, 81, 202,0.4);
+}
+
+.payment-page-pay-method-img{
+    height: 4rem;
+    width: 4.5rem;
+    margin-top: 0.4rem;
+    border: 1px solid rgb(179, 177, 177);
+    cursor: pointer;
+}
+
+.payment-page-pay-method-img:hover{
+    height: 4.2rem;
+    width: 4.7rem;
+    border: none;
+}
+
+.payment-page-pay-method-img:active{
+    border: 2px solid rgb(134, 134, 134);   
+}
+
+
+.payment-history-header{
+    font-weight: 600;
+    font-size: 18px;
+    height: 2.5rem;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+}
+
+.transaction-history-status-img{
+    height: 3rem;
+    width: 3rem;
+}

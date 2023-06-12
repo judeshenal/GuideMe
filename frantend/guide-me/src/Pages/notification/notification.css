@@ -1,0 +1,121 @@
+.notification-page-content{
+    height: 93vh;
+    width: 100vw;
+    display: flex;
+}
+
+.notification-page-left-content{
+    height: 100%;
+    width: 40%;
+}
+
+.notification-page-right-content{
+    height: 100%;
+    width: 60%;
+}
+
+.notification-page-left-content-img{
+    height: 90%;
+    width: 90%;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    border-radius: 8px;
+    box-shadow: 2px 1px rgb(184, 182, 182);
+}
+
+.notification-page-right-content-title{
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.notification-page-card-content{
+    height: 80%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: scroll;
+    box-shadow: 2px 2px rgb(199, 198, 198);
+}
+
+.notification-page-card{
+    height: 6rem;
+    width: 24rem;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(242, 243, 241);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 1px 1px rgb(148, 148, 148);
+}
+
+.notification-page-card-img{
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+.notification-page-card-title{
+    padding: 2.5rem 1rem 0rem 0rem;
+}
+
+.notification-page-assigned-card{
+    height: 15rem;
+    width: 13rem;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(242, 243, 241);
+    box-shadow: 1px 1px rgb(148, 148, 148);
+    text-align: center;
+    margin: 1rem;
+}
+
+.notification-page-assigned-card-content{
+    height:85%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 2px 2px rgb(199, 198, 198);
+    overflow-y: scroll;
+    justify-content: space-around;
+}
+
+.notification-page-card-text{
+    padding-top: 1rem;
+}
+
+
+/* Notification - Participating Styles */
+
+.notification-page-participate-content{
+    margin-top: 3rem;
+    margin-right: auto;
+    margin-left: auto;
+    overflow-y: scroll;
+}
+
+.notification-page-participate-row{
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem;
+    background-color: rgb(227, 230, 230);
+    border-radius: 7px;
+    box-shadow: 1px 2px rgb(167, 166, 166);
+}
+.notification-page-participate-data{
+    padding: 2rem 0rem 0rem 7rem;
+}
+
+.notification-page-participate-content-title{
+    text-align: center;
+}
+
+.notification-page-participate-data-item{
+    font-size: 13px;
+    font-weight: 600;
+}

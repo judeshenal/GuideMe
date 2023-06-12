@@ -8,11 +8,14 @@ import { HomePageData } from "../data/homepagedata";
 import HomePageCard from "../components/homepagecard";
 import { HomePageSeconCardData } from "../data/homepageseconcarddata";
 import HomePageSeconCard from "../components/homepageseconcard";
+import { ConsultantData } from "../data/ConsultantData";
+import ConsultantCard from "../components/ConsultantCard";
 import CountryDataCard from "../components/countrydatacard";
 import { CountryData } from "../data/countrydata";
 import BlogDataCard from "../components/blogdatacard";
 import { BlogData } from "../data/blogsdata";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 
 const HomePage = () => {
@@ -140,6 +143,40 @@ const HomePage = () => {
                   key={item.id}
                 >
                   <HomePageSeconCard item={item} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+<br/><br/>
+{/* Consultant Dummy Part */}
+      <div className="third-part">
+        <div
+          style={{
+            backgroundImage: `url("./Assets/consultantbg.jpg")`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            height: "100%",
+          }}
+        >
+          <div className="second-transparent-bg">
+            <div className="pt-5">
+              <h5 class="text-center fs-5 fw-normal">Here are our</h5>
+              <h4 class="text-center fs-3">
+                Expert Consultants
+              </h4>
+            </div>
+
+            <div className="row pt-4 pb-5 mx-auto">
+              {ConsultantData.map((item) => (
+                <div
+                  className="col d-flex justify-content-center"
+                  key={item.id}
+                >
+                  <Link to='/singleConsultant'>
+                   <ConsultantCard item={item} />
+                  </Link>
                 </div>
               ))}
             </div>

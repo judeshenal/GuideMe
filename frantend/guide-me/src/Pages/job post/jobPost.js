@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from '../../components/Footer';
 import './jobPost.css'
 import jobPostImage from '../../Assets/image.jpg'
@@ -20,11 +20,132 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Navbar  from "../../components/Header";
 import * as RiIcons from "react-icons/ri";
+import larravel from "../../apis/larravel";
+import { hover } from "@testing-library/user-event/dist/hover";
 
 
 const JobPost = () => {
     const [showInput, setShowInput] = useState(false);
+    const [categories , setCategories] = useState([])
+    const [jobs , setJobs] = useState(["job1" , "job2" , "job3" , "job4"])
+    const [showCat , setShowCat] = useState(1)
+    const [jobs_shoow , setJobsShow] = useState(false)
+    const user= {
+      userId : 1,
+      userName : "subhath"
+    }
 
+    useEffect(()=>{
+      //get cats
+      larravel.get('/categories',{
+        
+      })
+      .then((res) => { 
+        console.log("result : ", res.data)
+        setCategories(res.data)
+    })
+  // Catch errors if any
+  .catch((err) => { 
+    alert(err)
+  })
+      //get default cat's jobs
+      larravel.get('/jobs/1',{
+      })
+      .then((res) => { 
+        console.log("result : ", res.data)
+        setJobs(res.data)
+        console.log("hello")
+      var jobs_inner = []
+      var jobs_copy = []
+      var i = 0
+      for(let job in res.data){
+        if(i>=3){
+          jobs_copy.push(jobs_inner)
+          jobs_inner = []
+          i=0
+        }
+        console.log(res.data[job])
+          jobs_inner.push(res.data[job])
+          i++     
+      }
+      jobs_copy.push(jobs_inner)
+      console.log(jobs_copy)
+      setJobs(jobs_copy)
+      setJobsShow(true)
+    })
+  // Catch errors if any
+  .catch((err) => { 
+    alert(err)
+  })
+      
+    },[])
+
+    function searchJob(key){
+      larravel.get('/searchJobs/'+key,{
+      })
+      .then((res) => { 
+        console.log("result : ", res.data)
+        setJobs(res.data)
+        console.log("hello")
+      var jobs_inner = []
+      var jobs_copy = []
+      var i = 0
+      for(let job in res.data){
+        if(i>=3){
+          jobs_copy.push(jobs_inner)
+          jobs_inner = []
+          i=0
+        }
+        console.log(res.data[job])
+          jobs_inner.push(res.data[job])
+          i++     
+      }
+      jobs_copy.push(jobs_inner)
+      console.log(jobs_copy)
+      setJobs(jobs_copy)
+      setJobsShow(true)
+    })
+  // Catch errors if any
+  .catch((err) => { 
+    alert(err)
+  })
+    }
+
+    function selectCat(id){
+      larravel.get('/jobs/'+id,{
+      })
+      .then((res) => { 
+        console.log("result : ", res.data)
+        setJobs(res.data)
+        console.log("hello")
+      var jobs_inner = []
+      var jobs_copy = []
+      var i = 0
+      for(let job in res.data){
+        if(i>=3){
+          jobs_copy.push(jobs_inner)
+          jobs_inner = []
+          i=0
+        }
+        console.log(res.data[job])
+          jobs_inner.push(res.data[job])
+          i++     
+      }
+      jobs_copy.push(jobs_inner)
+      console.log(jobs_copy)
+      setJobs(jobs_copy)
+      setJobsShow(true)
+    })
+  // Catch errors if any
+  .catch((err) => { 
+    alert(err)
+  })
+    }
+
+    function getMoreDetails(id){
+      //get more details by job id
+    }
+    
     const unSetMouse = () => {
       setShowInput(false);
     };
@@ -32,6 +153,21 @@ const JobPost = () => {
     const setMouse = () => {
       setShowInput(true);
     };
+
+    function saveJob(id){
+      larravel.post('/savedjobs',{
+        userId:user.userId,
+        jobId:id
+      })
+      .then((res) => { 
+        console.log("result : ", res.data)
+        alert(res.data)
+    })
+  // Catch errors if any
+  .catch((err) => { 
+    alert(err)
+  })
+    }
   return (
     // <Card style={{ width: '18rem' }}>
     //   <Card.Img variant="top" src={jobPostImage}  style={{height:'287px',width:'600%'}}/>
@@ -69,6 +205,7 @@ const JobPost = () => {
                 placeholder="Search..."
                 onMouseLeave={unSetMouse}
                 onMouseEnter={setMouse}
+                onChange={e=>searchJob(e.target.value)}
               />
             </li>
           ) : (
@@ -84,30 +221,13 @@ const JobPost = () => {
           </span>
         </p></Col>
 
-        <Col><p style={{ color: "#02447c", fontWeight: "bold" }}>
+        {categories.map((cat)=>(
+          <Col><p style={{ color: "#02447c", fontWeight: "bold" ,cursor:"pointer"}}>
           <span className='write'>
-            <Link className="link" to="/write">IT</Link>
-          </span>
-          </p></Col>
-
-        <Col><p style={{ color: "#02447c", fontWeight: "bold" }}>
-          <span className='write'>
-            <Link className="link" to="/write">Education</Link>
+            <p className="link" onClick={(e)=>selectCat(cat.id)}>{cat.name}</p>
           </span>
         </p></Col>
-
-        <Col><p style={{ color: "#02447c", fontWeight: "bold" }}>
-          <span className='write'>
-            <Link className="link" to="/write">Chef</Link>
-          </span>
-        </p></Col>
-
-        <Col><p style={{ color: "#02447c", fontWeight: "bold" }}>
-          <span className='write'>
-            <Link className="link" to="/write">Fashion & Design</Link>
-          </span>
-        </p></Col>
-
+        ))}
 
 
       </Row>
@@ -120,101 +240,24 @@ const JobPost = () => {
         <Col sx={6}></Col> */}
 
       </Row>
-      <table>
-        <tr>
-
-          {/* // component start */}
-          <td><img src={ll} style={{ height: '50px', width: '50px' }} ></img></td>
-          <td style={{ maxWidth: "300px", padding: "20px" }}>
-            <Row><p style={{ color: "#000000", fontWeight: "bold" }}>Full Stack Software Engineer</p></Row>
-            <Row><p style={{ color: "#86838" }}>"We build custom software, mobile apps, websites, and digital products."Address:Galle Rd, Colombo 03000,</p></Row>
-            <Row><Link to="/company-details"><p style={{ color: "#5559f3", fontWeight: "bold" }}>View more</p></Link></Row>
-          </td>
-          <td><img src={bookMarks} style={{ height: '18px', width: '100px' }} ></img></td>
-          {/* // componentend */}
-
-          <td><img src={tt} style={{ height: '50px', width: '50px' }} ></img></td>
-          <td style={{ maxWidth: "300px", padding: "20px" }}>
-            <Row><p style={{ color: "#000000", fontWeight: "bold" }}>Tutopiya</p></Row>
-            <Row><p style={{ color: "#86838" }}>434, Level 4, A-wing, Dynasty Business Park, Andheri Kurla Road, Andheri East, Mumbai, Maharashtra-400059</p></Row>
-            <Row><Link to="/company-details"><p style={{ color: "#5559f3", fontWeight: "bold" }}>View more</p></Link></Row>
-          </td>
-          <td><img src={bookMarks} style={{ height: '18px', width: '100px' }} ></img></td>
-
-          <td><img src={bb} style={{ height: '50px', width: '50px' }} ></img></td>
-          <td style={{ maxWidth: "300px", padding: "20px" }}>
-            <Row><p style={{ color: "#000000", fontWeight: "bold" }}>Business Analyst</p></Row>
-            <Row><p style={{ color: "#86838" }}>Crossover is the world's #1 source of full-time remote jobs. Our clients offer top-tier pay for top-tier talent. </p></Row>
-            <Row><Link to="/company-details"><p style={{ color: "#5559f3", fontWeight: "bold" }}>View more</p></Link></Row>
-          </td>
-          <td><img src={bookMarks} style={{ height: '18px', width: '100px' }} ></img></td>
-
+      {jobs_shoow&&<table>
+        {jobs.map((job_inner)=>(
+          <tr>
+            {job_inner.map((job)=>(
+              <td style={{padding : '10px'}}>
+                <td><img src={ll} style={{ height: '50px', width: '50px' }} ></img></td>
+                <td style={{ maxWidth: "300px" }}>
+                <Row><p style={{ color: "#000000", fontWeight: "bold" }}>{job.name}</p></Row>
+                <Row><p style={{ color: "#86838" }}>"We build custom software, mobile apps, websites, and digital products."Address:Galle Rd, Colombo 03000,</p></Row>
+                <Row><Link to={"/company-details/"+job.mongo_id}><p style={{ color: "#5559f3", fontWeight: "bold" }}>View more</p></Link></Row>
+                </td>
+                <td><img src={bookMarks} style={{ height: '18px', width: '100px' , cursor:'pointer'}} onClick={(e)=>saveJob(job.id)}></img></td>
+              </td>
+            ))}
         </tr>
-
-
-        <tr>
-
-          {/* // component start */}
-          <td><img src={pp} style={{ height: '50px', width: '50px' }} ></img></td>
-          <td style={{ maxWidth: "300px", padding: "20px" }}>
-            <Row><p style={{ color: "#000000", fontWeight: "bold" }}>Python Developer</p></Row>
-            <Row><p style={{ color: "#86838" }}>CDAZZDEV is a global company that provides dazzling solutions for IT and Cybersecurity related needs in a customercentric manner.</p></Row>
-            <Row><Link to="/company-details"><p style={{ color: "#5559f3", fontWeight: "bold" }}>View more</p></Link></Row>
-          </td>
-          <td><img src={bookMarks} style={{ height: '18px', width: '100px' }} ></img></td>
-          {/* // componentend */}
-
-          <td><img src={dd} style={{ height: '50px', width: '50px' }} ></img></td>
-          <td style={{ maxWidth: "300px", padding: "20px" }}>
-            <Row><p style={{ color: "#000000", fontWeight: "bold" }}>Data Entry Operater</p></Row>
-            <Row><p style={{ color: "#86838" }}>Basic Computer Knowledge MS Excel & MS Word Knowledge Minimum Experience in Similar Job More Details ,Hotline / Whats app : 0766307888
-</p></Row>
-            <Row><Link to="/company-details"><p style={{ color: "#5559f3", fontWeight: "bold" }}>View more</p></Link></Row>
-          </td>
-          <td><img src={bookMarks} style={{ height: '18px', width: '100px' }} ></img></td>
-
-          <td><img src={ii} style={{ height: '50px', width: '50px' }} ></img></td>
-          <td style={{ maxWidth: "300px", padding: "20px" }}>
-            <Row><p style={{ color: "#000000", fontWeight: "bold" }}>iOS Developer</p></Row>
-            <Row><p style={{ color: "#86838" }}>We’re looking for highly motivated iOS Developers based in Colombo, Sri Lanka who are passionate about their work. </p></Row>
-            <Row><Link to="/company-details"><p style={{ color: "#5559f3", fontWeight: "bold" }}>View more</p></Link></Row>
-          </td>
-          <td><img src={bookMarks} style={{ height: '18px', width: '100px' }} ></img></td>
-
-        </tr>
-
-        <tr>
-
-          {/* // component start */}
-          <td><img src={oo} style={{ height: '50px', width: '50px' }} ></img></td>
-          <td style={{ maxWidth: "300px", padding: "20px" }}>
-            <Row><p style={{ color: "#000000", fontWeight: "bold" }}>Operations Associate</p></Row>
-            <Row><p style={{ color: "#86838" }}>By building smart tech solutions, we've empowered our team of property experts to deliver transparent.</p></Row>
-            <Row><Link to="/company-details"><p style={{ color: "#5559f3", fontWeight: "bold" }}>View more</p></Link></Row>
-          </td>
-          <td><img src={bookMarks} style={{ height: '18px', width: '100px' }} ></img></td>
-          {/* // componentend */}
-
-          <td><img src={uu} style={{ height: '50px', width: '50px' }} ></img></td>
-          <td style={{ maxWidth: "300px", padding: "20px" }}>
-            <Row><p style={{ color: "#000000", fontWeight: "bold" }}>UX Writer</p></Row>
-            <Row><p style={{ color: "#86838" }}>We are looking for a talented person with a passion for UX to join our design team. As a UX Writer, you will be responsible for creating efficient and engaging content for our apps, </p></Row>
-            <Row><Link to="/company-details"><p style={{ color: "#5559f3", fontWeight: "bold" }}>View more</p></Link></Row>
-          </td>
-          <td><img src={bookMarks} style={{ height: '18px', width: '100px' }} ></img></td>
-
-          <td><img src={ff} style={{ height: '50px', width: '50px' }} ></img></td>
-          <td style={{ maxWidth: "300px", padding: "20px" }}>
-            <Row><p style={{ color: "#000000", fontWeight: "bold" }}>Frontend Developer</p></Row>
-            <Row><p style={{ color: "#86838" }}><center></center>You will be part of Kleros’ software development team, working closely with the team on open source code. You will develop front ends that bring Kleros to life: write code.</p></Row>
-            <Row><Link to="/company-details"><p style={{ color: "#5559f3", fontWeight: "bold" }}>View more</p></Link></Row>
-          </td>
-          <td><img src={bookMarks} style={{ height: '18px', width: '100px' }} ></img></td>
-
-        </tr>
-
-
+        ))}
       </table>
+      }
       {/* <div className='footer'>
       <Footer/>
       </div> */}

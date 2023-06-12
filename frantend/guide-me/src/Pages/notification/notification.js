@@ -1,22 +1,18 @@
 import React from 'react'
 import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
-import { FaList, FaRegHeart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import { AiFillCopy, AiFillMessage, AiFillProfile, AiFillContacts, AiFillRead, AiFillMedicineBox } from "react-icons/ai";
 import { BsFillPersonLinesFill } from "react-icons/bs";
-import { Container } from 'react-bootstrap';
 import Navbar from "../../components/navbar";
-import { HomePageData } from "../../data/homepagedata";
-import HomePageCard from "../../components/homepagecard";
 import Table from 'react-bootstrap/Table';
-import Form from 'react-bootstrap/Form';
 import jobPostImage from '../../Assets/image.jpg'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { BiExpand } from "react-icons/bi";
 
 export default function Notification() {
-  const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } = useProSidebar();
+  const { collapseSidebar } = useProSidebar();
   return (
 
     <div >
@@ -33,17 +29,16 @@ export default function Notification() {
                 <Menu iconShape="square">
                   <MenuItem component={<Link to="/done" />} icon={<AiFillProfile />}> Done</MenuItem>
                   <MenuItem component={<Link to="/save" />} icon={<AiFillCopy />}> Save</MenuItem>
-                  <MenuItem component={<Link to="/inbox" />} icon={<AiFillMessage />}> Inbox</MenuItem>
                   <MenuItem component={<Link to="/assigned" />} icon={<AiFillContacts />}> Assigned</MenuItem>
                   <MenuItem component={<Link to="/participating" />} icon={<BsFillPersonLinesFill />}> Participating</MenuItem>
-                  <MenuItem component={<Link to="/mentioned" />} icon={<AiFillRead />}> Mentioned</MenuItem>
-                  <MenuItem component={<Link to="/review request" />} icon={<AiFillMedicineBox />}> Review request</MenuItem>
+                  <MenuItem component={<Link to="/reviewrequest" />} icon={<AiFillMedicineBox />}> Review request</MenuItem>
+                  <MenuItem component={<Link to="/assigned" />} style={{visibility:'hidden'}}> </MenuItem> 
                 </Menu>
 
               </Sidebar>
 
               <main>
-                <button onClick={() => collapseSidebar()}></button>
+                <BiExpand size={30} onClick={() => collapseSidebar()} style={{float:'right', cursor:'pointer'}}/>
               </main>
 
             </th>
